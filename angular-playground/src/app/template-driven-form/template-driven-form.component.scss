@@ -1,0 +1,43 @@
+.tdf-container {
+  h1 {
+    text-align: center;
+  }
+
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+    .example-full-width {
+      width: 100%;
+      margin: 0 0 10px;
+    }
+
+    mat-radio-button {
+      display: block;
+    }
+
+    div, button, label, mat-radio-button {
+      margin: 10px 10px 0 0;
+    }
+
+    .button-container {
+      text-align: center;
+    }
+  }
+}
+
+.submit {
+  margin: 0 auto;
+  width: 33%;
+  border: 1px solid green;
+  padding: 5px;
+  text-align: center;
+  &.success {
+    color: green;
+  }
+  &.error {
+    color: red;
+    border-color: red;
+  }
+}

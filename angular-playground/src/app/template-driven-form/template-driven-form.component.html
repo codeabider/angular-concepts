@@ -1,0 +1,66 @@
+<div class="tdf-container mat-typography">
+  <h1>Template Driven Form Example:</h1>
+  <h2 *ngIf="errorMsg" class="submit error">{{ errorMsg }}</h2>
+  <form action="" class="example-form" #tdForm="ngForm" (ngSubmit)="onFormSubmit()" *ngIf="!isSubmitted; else submitSuccess">
+    <!-- note: angular provides 'ngForm' to track form fields | need to add FormsModule to individual module-->
+    <!-- <span>{{ tdForm.value | json }}</span>
+    <hr />
+    <span>{{ userModel | json }}</span> -->
+
+    <div ngModelGroup="address">
+      <mat-form-field class="example-full-width">
+        <input type="text" matInput placeholder="Street" value="" name="street" [(ngModel)]="userModel.street">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input type="text" matInput placeholder="City" value="" name="city" [(ngModel)]="userModel.city">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input type="text" matInput placeholder="State" value="" name="state" [(ngModel)]="userModel.state">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input type="text" matInput placeholder="Postal Code" value="" name="postalCode" [(ngModel)]="userModel.postalCode">
+      </mat-form-field>
+    </div>
+
+    <mat-form-field class="example-full-width">
+      <input type="text" matInput placeholder="Name" value="" name="userName" [(ngModel)]="userModel.userName" required />
+      <mat-error>{{ getErrorMsg() }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input type="email" matInput placeholder="Email" value="" name="email" [(ngModel)]="userModel.email" required>
+      <mat-error>{{ getErrorMsg() }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input type="tel" matInput placeholder="Phone" value="" name="phoneNumber" [(ngModel)]="userModel.phoneNumber" required pattern="^\d{10}$">
+      <mat-error>{{ getErrorMsg(tdForm.controls.phoneNumber?.errors) }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-select placeholder="I am interested in" name="topicName" [(ngModel)]="userModel.topicName">
+        <mat-option [value]="topic" *ngFor="let topic of topics">{{ topic }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <div class="example-full-width">
+      <label for="">Time Preference:</label>
+      <mat-radio-group name="timePreference" [(ngModel)]="userModel.timePreference">
+        <mat-radio-button value="morning">Morning (9AM - 12PM)</mat-radio-button>
+        <mat-radio-button value="evening">Evening (5PM - 8PM)</mat-radio-button>
+      </mat-radio-group>
+    </div>
+
+    <div>
+      <mat-checkbox class="example-full-width" name="subscribeCheck" [(ngModel)]="userModel.subscribeCheck">Subscribe to latest updates</mat-checkbox>
+    </div>
+
+    <div class="button-container">
+      <button [disabled]="tdForm.form.invalid" mat-raised-button color="accent">Submit</button>
+    </div>
+  </form>
+</div>
+
+<ng-template #submitSuccess>
+  <h2 class="submit success">Form submitted successfully!!</h2>
+</ng-template>
