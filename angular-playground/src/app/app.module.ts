@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemoMaterialModule } from './demo-material/demo-material.module';
 import { TemplateDrivenFormModule } from './template-driven-form/template-driven-form.module';
+import { ReactiveFormModule } from './reactive-form/reactive-form.module';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -20,7 +21,8 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     BrowserAnimationsModule,
     DemoMaterialModule,
-    TemplateDrivenFormModule
+    TemplateDrivenFormModule,
+    ReactiveFormModule
   ],
   providers: [],
   bootstrap: [AppComponent]

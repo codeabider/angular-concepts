@@ -36,6 +36,7 @@
       <input type="tel" matInput placeholder="Phone" value="" name="phoneNumber" [(ngModel)]="userModel.phoneNumber" required pattern="^\d{10}$">
       <mat-error>{{ getErrorMsg(tdForm.controls.phoneNumber?.errors) }}</mat-error>
     </mat-form-field>
+    <!-- <h3>{{tdForm.controls.phoneNumber?.errors | json}}</h3> -->
 
     <mat-form-field class="example-full-width">
       <mat-select placeholder="I am interested in" name="topicName" [(ngModel)]="userModel.topicName">

@@ -1,0 +1,63 @@
+<div class="reactive-form-container mat-typography">
+  <h1>Reactive Form Example:</h1>
+  <h2 *ngIf="errorMsg" class="submit error">{{ errorMsg }}</h2>
+  <form action="" class="example-form" [formGroup]="registrationForm" (ngSubmit)="onSubmit()" *ngIf="!isSubmitted; else submitSuccess">
+    <!-- note: formGroup directive is provided by reactive forms module from angular -->
+    <!-- <span>{{ registrationForm.value | json }}</span>
+    <hr /> -->
+
+    <mat-form-field class="example-full-width">
+      <input type="text" matInput placeholder="Username" formControlName="userName" />
+      <mat-error>
+        {{ getErrorMessage(userName.errors) }}
+        <!-- {{ userName.invalid && userName.touched }} -->
+        <!-- using getter function for userName -->
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input type="password" matInput placeholder="Password" formControlName="password">
+      <mat-error>{{ getErrorMessage(password.errors) }}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input type="password" matInput placeholder="Confirm Password" formControlName="confirmPassword">
+      <mat-error>{{ getErrorMessage(registrationForm.errors) }}</mat-error>
+      <!-- check material implementation for formGroup error in formControl -->
+    </mat-form-field>
+    <span class="mat-error" *ngIf="registrationForm.errors?.passwordMismatch">Passwords do not match</span>
+
+    <mat-form-field class="example-full-width">
+      <input type="email" matInput placeholder="Email ID" formControlName="email">
+      <mat-error>{{ getErrorMessage(email.errors) }}</mat-error>
+    </mat-form-field>
+
+    <div>
+      <mat-checkbox class="example-full-width" formControlName="subscribeCheck">Subscribe to latest updates</mat-checkbox>
+    </div>
+
+    <div formGroupName="address">
+      <mat-form-field class="example-full-width">
+        <input type="text" matInput placeholder="Street" formControlName="street">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input type="text" matInput placeholder="City" formControlName="city">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input type="text" matInput placeholder="State" formControlName="state">
+      </mat-form-field>
+      <mat-form-field class="example-full-width">
+        <input type="text" matInput placeholder="Postal Code" formControlName="postalCode">
+      </mat-form-field>
+    </div>
+
+    <div class="button-container">
+      <button [disabled]="!registrationForm.valid" mat-raised-button color="primary" type="submit">Submit</button>
+      <button mat-raised-button color="accent" (click)="loadAPIData()">Load API Data</button>
+    </div>
+  </form>
+</div>
+
+<ng-template #submitSuccess>
+  <h2 class="submit success">Form submitted successfully!!</h2>
+</ng-template>
